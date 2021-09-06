@@ -12,8 +12,9 @@ class NewrelicInfraAgent < Formula
   def install
     goarch = Hardware::CPU.arm? ? "arm64" : "amd64"
     ENV["VERSION"] = version.to_s
+    os = "darwin"
     ENV["CGO_ENABLED"] = "1"
-    ENV["GOOS"] = "darwin"
+    ENV["GOOS"] = os
     system "make", "dist-for-os"
     bin.install "dist/#{os}-newrelic-infra_#{os}_#{goarch}/newrelic-infra"
     bin.install "dist/#{os}-newrelic-infra-ctl_#{os}_#{goarch}/newrelic-infra-ctl"
