@@ -1,25 +1,29 @@
 class NewrelicInfraAgent < Formula
   desc "New Relic infrastructure agent"
   homepage "https://github.com/newrelic/infrastructure-agent"
-  url "https://github.com/newrelic/infrastructure-agent/archive/refs/tags/1.20.2.tar.gz"
-  sha256 "83f521ed6ed903d9fdbeed8eb59b6b488ce5492fe305d38a7096d4c2f017138d"
+  url "https://github.com/newrelic/infrastructure-agent.git",
+      tag:      "1.20.5",
+      revision: "1a47a21cfa3c1e1651471f2ee04ef7c21b539f9d"
   license "Apache-2.0"
   head "https://github.com/newrelic/infrastructure-agent.git", branch: "master"
 
+  # https://github.com/newrelic/infrastructure-agent/issues/723
   depends_on "go@1.16" => :build
+  # https://github.com/newrelic/infrastructure-agent/issues/695
   depends_on arch: :x86_64
 
   def install
-    goarch = Hardware::CPU.arm? ? "arm64" : "amd64"
+    goarch = Hardware::CPU.intel? ? "amd64" : Hardware::CPU.arch.to_s
+    os = OS.kernel_name.downcase
     ENV["VERSION"] = version.to_s
-    os = "darwin"
-    ENV["CGO_ENABLED"] = "1"
     ENV["GOOS"] = os
+    ENV["CGO_ENABLED"] = OS.mac? ? "1" : "0"
+
     system "make", "dist-for-os"
     bin.install "dist/#{os}-newrelic-infra_#{os}_#{goarch}/newrelic-infra"
     bin.install "dist/#{os}-newrelic-infra-ctl_#{os}_#{goarch}/newrelic-infra-ctl"
     bin.install "dist/#{os}-newrelic-infra-service_#{os}_#{goarch}/newrelic-infra-service"
-    (var/"db/newrelic-infra").install "assets/licence/LICENSE.macos.txt"
+    (var/"db/newrelic-infra").install "assets/licence/LICENSE.macos.txt" if OS.mac?
   end
 
   def post_install
