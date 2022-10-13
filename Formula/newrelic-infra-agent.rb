@@ -14,7 +14,7 @@ class NewrelicInfraAgent < Formula
     strategy :github_latest
   end
 
-  depends_on "go" => :build
+  depends_on "go@1.18" => :build
 
   def install
     goarch = Hardware::CPU.intel? ? "amd64" : Hardware::CPU.arch.to_s
