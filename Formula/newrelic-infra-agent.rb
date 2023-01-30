@@ -2,8 +2,8 @@ class NewrelicInfraAgent < Formula
   desc "New Relic infrastructure agent"
   homepage "https://github.com/newrelic/infrastructure-agent"
   url "https://github.com/newrelic/infrastructure-agent.git",
-      tag:      "1.36.1",
-      revision: "d9c6f5f86b23b3bd7f3ea9111bb5886ba5156d83"
+      tag:      "1.37.0",
+      revision: "e6524dec08c8eab730aa99e3930baf00cbed1954"
   license "Apache-2.0"
   head "https://github.com/newrelic/infrastructure-agent.git", branch: "master"
 
@@ -14,7 +14,7 @@ class NewrelicInfraAgent < Formula
     strategy :github_latest
   end
 
-  depends_on "go@1.18" => :build
+  depends_on "go@1.19" => :build
 
   def install
     goarch = Hardware::CPU.intel? ? "amd64" : Hardware::CPU.arch.to_s
