@@ -2,8 +2,8 @@ class NewrelicInfraAgent < Formula
   desc "New Relic infrastructure agent"
   homepage "https://github.com/newrelic/infrastructure-agent"
   url "https://github.com/newrelic/infrastructure-agent.git",
-      tag:      "1.57.1",
-      revision: "367ee4b9234fe132bfe9454c5bf8f9c71d6feb32"
+      tag:      "1.59.1",
+      revision: "6ca760d56f9fcf4598c9836f6aa1609e9bf28834"
   license "Apache-2.0"
   head "https://github.com/newrelic/infrastructure-agent.git", branch: "master"
 
@@ -12,6 +12,15 @@ class NewrelicInfraAgent < Formula
   livecheck do
     url :stable
     strategy :github_latest
+  end
+
+  bottle do
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "186c68e747fc731dd79659f079b4dcd6089cb207a3c961b66542007ed14abd97"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "90e4dbc835494f1056cc65f9942b573ee5c048cae6aae8bf78b1630f8a2ab8f6"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "5dc62e30c0c0ad34c6b0bc448b0246285371a205e612c7981e017512ba949b93"
+    sha256 cellar: :any_skip_relocation, sonoma:        "eb957923d7f64a519eb8403759e240e49934d9c0e331d9f7e4bc00f7c7fd641f"
+    sha256 cellar: :any_skip_relocation, ventura:       "0155c14d5421a37760d41ac988a4cdb68cbd49c62f29482ee4adc438209894cc"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4bdd53d5e95aa8179e547de25ddb78ecdd92834d9122f7c2b7dd2d85f6f5dddf"
   end
 
   depends_on "go" => :build
