@@ -8,6 +8,8 @@ Package manager for macOS, see more at https://brew.sh
 
 > brew install newrelic/tap/newrelic-infra-agent
 
+> brew install --cask newrelic/tap/groundtruth
+
 ## Support
 
 Should you need assistance with New Relic products, you are in good hands with several support diagnostic tools and support channels.
