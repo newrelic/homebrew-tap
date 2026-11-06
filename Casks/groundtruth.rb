@@ -3,15 +3,15 @@
 # file here: the next release overwrites it. Only the version and the two
 # darwin checksums change from release to release.
 cask "groundtruth" do
-  version "0.4.0"
+  version "0.5.0"
 
   on_arm do
-    sha256 "fd05bfc1660f00a4675251a1fa1c2e0dc1b6ff2b87a6956660b669ba0cec74ff"
+    sha256 "1216745bdc3057ac3d06d8b536f505ea868a51ed55999620a44c2529cf255fd1"
 
     url "https://github.com/newrelic/ground-truth-cli-releases/releases/download/v#{version}/ground-truth-cli_#{version}_darwin_arm64.tar.gz"
   end
   on_intel do
-    sha256 "6ac4f98ea3acbfdd46bcdb1d81fb5c8f65cf1be121a77fc51e3a2ea39bdf64db"
+    sha256 "24bceac49b36c105f3c6ab6a7683dd5ea0311f3205994878d2a46ade236d0204"
 
     url "https://github.com/newrelic/ground-truth-cli-releases/releases/download/v#{version}/ground-truth-cli_#{version}_darwin_amd64.tar.gz"
   end
